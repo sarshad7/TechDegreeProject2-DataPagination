@@ -24,6 +24,23 @@ function showPage(list, page) {
    const endIndex = page * itemsPerPage;
    let studentList = document.querySelector('ul.student-list');
    studentList.innerHTML = ''; 
+   for (let i=0; i<list.length; i++) {
+      if (i>=startIndex && i<endIndex){
+         const student = list[i];
+         const html = `<li class="student-item cf">
+          <div class="student-details">
+            <img class="avatar" src="${student.picture.large}" alt="Student Picture">
+            <h3>"${student.name.first} ${student.name.last}"</h3>
+            <span class="email">${student.email}</span>
+          </div>
+          <div class="joined-details">
+            <span class="date">${student.registered.date}</span>
+          </div>
+        </li>
+      `;
+      studentList.insertAdjacentHTML("beforeend", html);
+      }
+   }
 }
 
 
