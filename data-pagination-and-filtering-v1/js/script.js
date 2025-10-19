@@ -19,8 +19,11 @@ This function will create and insert/append the elements needed to display a "pa
 */
 
 function showPage(list, page) {
+   const itemsPerPage = 9;
    const startIndex = (page * itemsPerPage) - itemsPerPage; 
    const endIndex = page * itemsPerPage;
+   let studentList = document.querySelector('ul.student-list');
+   classList.innerHTML = ''; 
 }
 
 
