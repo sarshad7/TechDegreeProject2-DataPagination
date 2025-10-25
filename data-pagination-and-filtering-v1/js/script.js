@@ -39,16 +39,39 @@ function showPage(list, page) {
         </li>
       `;
       studentList.insertAdjacentHTML("beforeend", html);
-      }
+    }
+    console.log(list);
+    console.log(page);
    }
-}
+};
 
+showPage(data, 1);
 
 
 /*
 Create the `addPagination` function
 This function will create and insert/append the elements needed for the pagination buttons
 */
+
+function addPagination(list) {
+    // create a variable to calculate the number of pages needed
+
+  // select the element with a class of `link-list` and assign it to a variable
+
+  // set the innerHTML property of the variable you just created to an empty string
+
+  // loop over the number of pages needed
+    // create the elements needed to display the pagination button
+    // insert the above elements
+
+  // give the first pagination button a class of "active"
+
+  // create an event listener on the `link-list` element
+    // if the click target is a button:
+      // remove the "active" class from the previous button
+      // add the active class to the clicked button
+      // call the showPage function passing the `list` parameter and page to display as arguments
+}
 
 
 
