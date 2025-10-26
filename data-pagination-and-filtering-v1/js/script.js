@@ -54,24 +54,37 @@ This function will create and insert/append the elements needed for the paginati
 */
 
 function addPagination(list) {
-    // create a variable to calculate the number of pages needed
-
-  // select the element with a class of `link-list` and assign it to a variable
-
-  // set the innerHTML property of the variable you just created to an empty string
-
-  // loop over the number of pages needed
-    // create the elements needed to display the pagination button
-    // insert the above elements
-
-  // give the first pagination button a class of "active"
-
-  // create an event listener on the `link-list` element
-    // if the click target is a button:
-      // remove the "active" class from the previous button
-      // add the active class to the clicked button
-      // call the showPage function passing the `list` parameter and page to display as arguments
-}
+// create a variable to calculate the number of pages needed
+const numOfPages = Math.ceil(list.length / itemsPerPage);
+// select the element with a class of `link-list` and assign it to a variable
+const linkList = document.querySelector('ul.link-list');
+// set the innerHTML property of the variable you just created to an empty string
+linkList.innerHTML = '';
+// loop over the number of pages needed
+  // create the elements needed to display the pagination button
+  // insert the above elements
+for (let i=0; i<numOfPages; i++) {
+  const buttonHTML = `<li>
+  <button type="button">1</button>
+  </li>`;
+  linkList.insertAdjacentHTML("beforeend", buttonHTML);
+};
+// give the first pagination button a class of "active"
+const activeButton = linkList.querySelector(".active")
+// create an event listener on the `link-list` element
+linkList.addEventListener("click", (e)) => {
+  const buttonClicked = e.target.closest("button")
+  if (buttonClicked) {
+    activeButton.classList.remove("active");
+    buttonClicked.classList.add("active");
+    showPage(list, page);
+  };
+};
+  // if the click target is a button:
+    // remove the "active" class from the previous button
+    // add the active class to the clicked button
+    // call the showPage function passing the `list` parameter and page to display as arguments
+};
 
 
 
