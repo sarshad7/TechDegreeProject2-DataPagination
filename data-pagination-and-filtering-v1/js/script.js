@@ -22,7 +22,7 @@ function showPage(list, page) {
    const itemsPerPage = 9;
    const startIndex = (page * itemsPerPage) - itemsPerPage; 
    const endIndex = page * itemsPerPage;
-   let studentList = document.querySelector('ul.student-list');
+   const studentList = document.querySelector('ul.student-list');
    studentList.innerHTML = ''; 
    for (let i=0; i<list.length; i++) {
       if (i>=startIndex && i<endIndex){
@@ -63,29 +63,32 @@ linkList.innerHTML = '';
 // loop over the number of pages needed
   // create the elements needed to display the pagination button
   // insert the above elements
-for (let i=0; i<numOfPages; i++) {
-  const buttonHTML = `<li>
+for (let i=1; i<numOfPages; i++) {
+  const buttonHTML = `
+  <li>
   <button type="button">1</button>
-  </li>`;
+  </li>
+  `;
   linkList.insertAdjacentHTML("beforeend", buttonHTML);
 };
 // give the first pagination button a class of "active"
 const activeButton = linkList.querySelector(".active")
 // create an event listener on the `link-list` element
-linkList.addEventListener("click", (e)) => {
+linkList.addEventListener("click", (e) => {
   const buttonClicked = e.target.closest("button")
   if (buttonClicked) {
-    activeButton.classList.remove("active");
-    buttonClicked.classList.add("active");
-    showPage(list, page);
-  };
-};
-  // if the click target is a button:
+    // if the click target is a button:
     // remove the "active" class from the previous button
+    activeButton.classList.remove("active");
     // add the active class to the clicked button
     // call the showPage function passing the `list` parameter and page to display as arguments
+    buttonClicked.classList.add("active");
+    showPage(list, page);
+    };
+  };
 };
 
-
-
 // Call functions
+showPage(data, 1);
+addPagination(data);
+
