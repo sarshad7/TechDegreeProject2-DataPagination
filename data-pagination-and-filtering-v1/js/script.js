@@ -30,7 +30,7 @@ function showPage(list, page) {
          const html = `<li class="student-item cf">
           <div class="student-details">
             <img class="avatar" src="${student.picture.large}" alt="Student Picture">
-            <h3>"${student.name.first} ${student.name.last}"</h3>
+            <h3>${student.name.first} ${student.name.last}</h3>
             <span class="email">${student.email}</span>
           </div>
           <div class="joined-details">
@@ -40,8 +40,6 @@ function showPage(list, page) {
       `;
       studentList.insertAdjacentHTML("beforeend", html);
     }
-    console.log(list);
-    console.log(page);
    }
 };
 
@@ -55,6 +53,7 @@ This function will create and insert/append the elements needed for the paginati
 
 function addPagination(list) {
 // create a variable to calculate the number of pages needed
+const itemsPerPage = 9;
 const numOfPages = Math.ceil(list.length / itemsPerPage);
 // select the element with a class of `link-list` and assign it to a variable
 const linkList = document.querySelector('ul.link-list');
@@ -63,29 +62,31 @@ linkList.innerHTML = '';
 // loop over the number of pages needed
   // create the elements needed to display the pagination button
   // insert the above elements
-for (let i=1; i<numOfPages; i++) {
+for (let i=1; i<=numOfPages; i++) {
   const buttonHTML = `
   <li>
-  <button type="button">1</button>
+  <button type="button">${i}</button>
   </li>
   `;
   linkList.insertAdjacentHTML("beforeend", buttonHTML);
 };
 // give the first pagination button a class of "active"
-const activeButton = linkList.querySelector(".active")
+const firstButton = linkList.querySelector("button");
+if (firstButton) firstButton.classList.add("active");
 // create an event listener on the `link-list` element
 linkList.addEventListener("click", (e) => {
   const buttonClicked = e.target.closest("button")
   if (buttonClicked) {
     // if the click target is a button:
     // remove the "active" class from the previous button
-    activeButton.classList.remove("active");
+    const currentActive = linkList.querySelector('.active');
+    if (currentActive) currentActive.classList.remove('active');
     // add the active class to the clicked button
     // call the showPage function passing the `list` parameter and page to display as arguments
-    buttonClicked.classList.add("active");
+    buttonClicked.classList.add('active');
     showPage(list, page);
     };
-  };
+  });
 };
 
 // Call functions
