@@ -84,6 +84,7 @@ linkList.addEventListener("click", (e) => {
     // add the active class to the clicked button
     // call the showPage function passing the `list` parameter and page to display as arguments
     buttonClicked.classList.add('active');
+    const page = parseInt(buttonClicked.textContent);
     showPage(list, page);
     };
   });
