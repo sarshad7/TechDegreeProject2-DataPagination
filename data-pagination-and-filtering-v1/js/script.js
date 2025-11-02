@@ -10,8 +10,22 @@ For assistance:
    Check out the "Project Resources" section of the Instructions tab: https://teamtreehouse.com/projects/data-pagination-and-filtering#instructions
    Reach out in your Slack community: https://treehouse-fsjs-102.slack.com/app_redirect?channel=unit-2
 */
+// Search bar functionality 
+const header = document.querySelector('.header');
+const searchLabel = document.createElemeent('label');
+searchLabel.className = 'student-search';
+searchLabel.setAttribute('for','search');
 
+searchLabel.innerHTML = `<label for="search" class="student-search">
+  <span>Search by name</span>
+  <input id="search" placeholder="Search by name...">
+  <button type="button"><img src="img/icn-search.svg" alt="Search icon"></button>
+</label>`;
 
+header.appendChild(searchLabel);
+
+const searchInput = document.getElementById('search');
+const searchButton = searchLabel.querySelector('button');
 
 /*
 Create the `showPage` function
@@ -44,7 +58,20 @@ function showPage(list, page) {
 };
 
 showPage(data, 1);
+//create the performSearch function
+function performSearch() {
+  const searchValue = searchInput.value.toLowerCase();
 
+  const filteredStudents = data.filter(student => {
+    const fullName = `${student.name.first} ${student.name.last}`.toLowerCase();
+    return fullName.includes(Searchvalue);
+  });
+  showPage(filteredStudents, 1);
+  addPagination(filteredStudents);
+};
+
+searchInput.addEventListener('keyup', performSearch);
+searchButton.addEventListener('click', performSearch);
 
 /*
 Create the `addPagination` function
