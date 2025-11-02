@@ -12,15 +12,15 @@ For assistance:
 */
 // Search bar functionality 
 const header = document.querySelector('.header');
-const searchLabel = document.createElemeent('label');
+const searchLabel = document.createElement('label');
 searchLabel.className = 'student-search';
 searchLabel.setAttribute('for','search');
 
-searchLabel.innerHTML = `<label for="search" class="student-search">
+searchLabel.innerHTML = `
   <span>Search by name</span>
   <input id="search" placeholder="Search by name...">
   <button type="button"><img src="img/icn-search.svg" alt="Search icon"></button>
-</label>`;
+`;
 
 header.appendChild(searchLabel);
 
@@ -57,14 +57,13 @@ function showPage(list, page) {
    }
 };
 
-showPage(data, 1);
 //create the performSearch function
 function performSearch() {
   const searchValue = searchInput.value.toLowerCase();
 
   const filteredStudents = data.filter(student => {
     const fullName = `${student.name.first} ${student.name.last}`.toLowerCase();
-    return fullName.includes(Searchvalue);
+    return fullName.includes(searchValue);
   });
 
   if (filteredStudents.length === 0) {
