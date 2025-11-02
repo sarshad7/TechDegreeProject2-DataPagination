@@ -66,6 +66,15 @@ function performSearch() {
     const fullName = `${student.name.first} ${student.name.last}`.toLowerCase();
     return fullName.includes(Searchvalue);
   });
+
+  if (filteredStudents.length === 0) {
+  const studentList = document.querySelector('.student-list');
+  studentList.innerHTML = `<li class="student-item cf"><h3>No results found</h3></li>`;
+  const linkList = document.querySelector('.link-list');
+  linkList.innerHTML = ''; // remove pagination buttons
+  return;
+}
+
   showPage(filteredStudents, 1);
   addPagination(filteredStudents);
 };
